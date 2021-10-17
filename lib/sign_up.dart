@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     body: Container(
+      body: Container(
         height: double.infinity,
         width: double.infinity,
         decoration: const BoxDecoration(
@@ -23,7 +23,7 @@ class _SignInState extends State<SignIn> {
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0, top: 168),
               child: Text(
-                "Hello!",
+                "Let's get acquainted",
                 style: GoogleFonts.openSans(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
@@ -32,7 +32,7 @@ class _SignInState extends State<SignIn> {
               ),
             ),
             Text(
-              "Enter your login and password below",
+              "Fill out the profile and go to the application!",
               style: GoogleFonts.openSans(fontSize: 12, color: Colors.white),
             ),
             Padding(
@@ -78,7 +78,7 @@ class _SignInState extends State<SignIn> {
                     ),
                   ),
                   child: Text(
-                    "LOGIN",
+                    "REGISTER",
                     style:
                         GoogleFonts.openSans(fontSize: 14, color: Colors.white),
                   ),
@@ -96,17 +96,17 @@ class _SignInState extends State<SignIn> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "Don't have an account?",
+                      "Already have an account?",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.openSans(
                           fontSize: 14, color: Colors.white),
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/second');
+                        Navigator.pop(context);
                       },
                       child: Text(
-                        "Sign up",
+                        "Sign in",
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                             fontSize: 14, color: Colors.white),
