@@ -66,7 +66,9 @@ class _SignInState extends State<SignIn> {
               child: SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/my_profile');
+                  },
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     shape: const RoundedRectangleBorder(
