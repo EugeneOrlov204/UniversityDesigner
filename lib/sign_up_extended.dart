@@ -22,7 +22,7 @@ class _SignUpExtendedState extends State<SignUpExtended> {
         child: Column(
           children: [
             Text(
-              "TEST!"
+              "TEST!2"
             ),
 
             SvgPicture.asset(
