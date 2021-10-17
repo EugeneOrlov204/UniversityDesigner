@@ -66,7 +66,9 @@ class _SignUpState extends State<SignUp> {
               child: SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/sign_up_extended');
+                  },
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     shape: const RoundedRectangleBorder(
