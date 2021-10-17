@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:hackathon_project/sign_in.dart';
 import 'package:hackathon_project/sign_up.dart';
+import 'package:hackathon_project/sign_up_extended.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -10,10 +11,9 @@ void main() {
     // on the FirstScreen widget.
     initialRoute: '/',
     routes: {
-      // When navigating to the "/" route, build the FirstScreen widget.
       '/': (context) => const SignIn(),
-      // When navigating to the "/second" route, build the SecondScreen widget.
-      '/second': (context) => const SignUp(),
+      '/sign_up': (context) => const SignUp(),
+      '/sign_up_extended': (context) => const SignUpExtended(),
     },
     debugShowCheckedModeBanner: false,
   ));
