@@ -7,6 +7,7 @@ import 'package:hackathon_project/ui/sign_up_extended.dart';
 import 'package:flutter/services.dart';
 
 import 'my_profile.dart';
+import 'create_group.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +22,8 @@ void main() {
       '/': (context) => const SignIn(),
       '/sign_up': (context) => const SignUp(),
       '/sign_up_extended': (context) => const SignUpExtended(),
-      '/my_profile': (context) => const MyProfile()
+      '/my_profile': (context) => const MyProfile(),
+      '/create_group': (context) => const CreateGroup(),
     },
     debugShowCheckedModeBanner: false,
   ));
