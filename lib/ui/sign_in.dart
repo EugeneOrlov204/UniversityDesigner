@@ -152,6 +152,32 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16, top: 120),
+              child: SizedBox(
+                width: double.infinity,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/create_group');
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shape: const RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: Colors.white,
+                        width: 1,
+                        style: BorderStyle.solid,
+                      ),
+                    ),
+                  ),
+                  child: Text(
+                    "Test",
+                    style:
+                    GoogleFonts.openSans(fontSize: 14, color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
             Container(
               width: double.infinity,
               height: 45,
