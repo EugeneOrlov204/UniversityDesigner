@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:hackathon_project/sign_in.dart';
-import 'package:hackathon_project/sign_up.dart';
-import 'package:hackathon_project/sign_up_extended.dart';
+import 'package:hackathon_project/ui/sign_in.dart';
+import 'package:hackathon_project/ui/sign_up.dart';
+import 'package:hackathon_project/ui/sign_up_extended.dart';
 import 'package:flutter/services.dart';
 
 import 'my_profile.dart';
