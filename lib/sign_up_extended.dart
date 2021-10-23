@@ -77,6 +77,9 @@ class _SignUpExtendedState extends State<SignUpExtended> {
               ),
             ),
             const InstituteFieldWidget(),
+            Expanded(
+              child: Container(),
+            ),
             Align(
               alignment: FractionalOffset.bottomCenter,
               child: SizedBox(
