@@ -37,11 +37,40 @@ class _MyProfileState extends State<MyProfile> {
             Container(
               width: 200,
               height: 200,
-              decoration:  BoxDecoration(
+              decoration:  const BoxDecoration(
                 shape: BoxShape.circle,
                 image:  DecorationImage(
                   image:  AssetImage('assets/images/ha.jpg'),
                   fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container()
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: SizedBox(
+                width: double.infinity,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/chat');
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shape: const RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: Colors.white,
+                        width: 1,
+                        style: BorderStyle.solid,
+                      ),
+                    ),
+                  ),
+                  child: Text(
+                    "Test Chat",
+                    style:
+                    GoogleFonts.openSans(fontSize: 14, color: Colors.white),
+                  ),
                 ),
               ),
             ),

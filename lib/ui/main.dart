@@ -6,6 +6,7 @@ import 'package:hackathon_project/ui/sign_up.dart';
 import 'package:hackathon_project/ui/sign_up_extended.dart';
 import 'package:flutter/services.dart';
 
+import 'chat.dart';
 import 'my_profile.dart';
 import 'create_group.dart';
 
@@ -24,6 +25,7 @@ void main() {
       '/sign_up_extended': (context) => const SignUpExtended(),
       '/my_profile': (context) => const MyProfile(),
       '/create_group': (context) => const CreateGroup(),
+      '/chat': (context) => const Chat()
     },
     debugShowCheckedModeBanner: false,
   ));
