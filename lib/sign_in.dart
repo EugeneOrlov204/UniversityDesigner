@@ -72,7 +72,7 @@ class _SignInState extends State<SignIn> {
                         hintStyle:
                             TextStyle(color: Colors.white60, fontSize: 12),
                       ),
-                      validator: emailValidationError,
+                      validator: getEmailValidationError,
                       onChanged: (value) {
                         _email = value;
                         _formEmailKey.currentState!.validate();
@@ -111,7 +111,7 @@ class _SignInState extends State<SignIn> {
                       obscureText: true,
                       enableSuggestions: false,
                       autocorrect: false,
-                      validator: passwordValidationError,
+                      validator: getPasswordValidationError,
                       onChanged: (value) {
                         _password = value;
                         _formPasswordKey.currentState!.validate();
@@ -129,8 +129,8 @@ class _SignInState extends State<SignIn> {
                 child: TextButton(
                   onPressed: () {
                     updateUI();
-                    if (emailValidationError(_email) == null &&
-                        passwordValidationError(_password) == null) {
+                    if (getEmailValidationError(_email) == null &&
+                        getPasswordValidationError(_password) == null) {
                       Navigator.pushNamed(context, '/my_profile');
                     }
                   },

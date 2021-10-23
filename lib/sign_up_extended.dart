@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon_project/utils/validator.dart';
 
 class SignUpExtended extends StatefulWidget {
   const SignUpExtended({Key? key}) : super(key: key);
@@ -10,6 +11,13 @@ class SignUpExtended extends StatefulWidget {
 }
 
 class _SignUpExtendedState extends State<SignUpExtended> {
+  final GlobalKey<FormState> _formUserNameKey = GlobalKey<FormState>();
+  String _userName = "";
+
+  updateUI() {
+    setState(() => _formUserNameKey.currentState!.validate());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +71,30 @@ class _SignUpExtendedState extends State<SignUpExtended> {
                 ),
               ),
             ),
-            _getUserNameField(),
+            Form(
+              key: _formUserNameKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
+                      decoration: const InputDecoration(
+                        hintText: 'Enter your user name',
+                        hintStyle:
+                            TextStyle(color: Colors.white60, fontSize: 12),
+                      ),
+                      validator: geUserNameValidationError,
+                      onChanged: (value) {
+                        _userName = value;
+                        _formUserNameKey.currentState!.validate();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(
                   left: 16, top: 24, bottom: 8, right: 24),
@@ -110,14 +141,18 @@ class _SignUpExtendedState extends State<SignUpExtended> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
+              padding:
+                  const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
               child: Align(
                 alignment: FractionalOffset.bottomCenter,
                 child: SizedBox(
                   width: double.infinity,
                   child: TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/my_profile');
+                      updateUI();
+                      if (geUserNameValidationError(_userName) == null) {
+                        Navigator.pushNamed(context, '/my_profile');
+                      }
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.transparent,
@@ -145,48 +180,6 @@ class _SignUpExtendedState extends State<SignUpExtended> {
   }
 }
 
-_getUserNameField() {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  bool emailValid(String email) {
-    return RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(email);
-  }
-
-  String? _validateUserName(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter your name!';
-    } else if (value.length <= 5) {
-      return 'Your name must contains at least 6 characters';
-    }
-    return null;
-  }
-
-  return Form(
-    key: _formKey,
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(left: 16.0),
-          child: TextFormField(
-            style: const TextStyle(color: Colors.white),
-            decoration: const InputDecoration(
-              hintText: 'Enter your user name',
-              hintStyle: TextStyle(color: Colors.white60, fontSize: 12),
-            ),
-            validator: _validateUserName,
-            onFieldSubmitted: (value) {
-              _formKey.currentState!.validate();
-            },
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
 /// This is the stateful widget that the main application instantiates.
 class InstituteFieldWidget extends StatefulWidget {
   const InstituteFieldWidget({Key? key}) : super(key: key);
@@ -196,7 +189,7 @@ class InstituteFieldWidget extends StatefulWidget {
 }
 
 class _InstituteFieldWidgetState extends State<InstituteFieldWidget> {
-  String dropdownValue = 'One';
+  String dropdownValue = 'Institute One';
 
   @override
   Widget build(BuildContext context) {
@@ -219,8 +212,12 @@ class _InstituteFieldWidgetState extends State<InstituteFieldWidget> {
               dropdownValue = newValue!;
             });
           },
-          items: <String>['One', 'Two', 'Three', 'Four']
-              .map<DropdownMenuItem<String>>((String value) {
+          items: <String>[
+            'Institute One',
+            'Institute Two',
+            'Institute Three',
+            'Institute Four'
+          ].map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
               child: Text(value),

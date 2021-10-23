@@ -72,7 +72,7 @@ class _SignUpState extends State<SignUp> {
                         hintStyle:
                             TextStyle(color: Colors.white60, fontSize: 12),
                       ),
-                      validator: emailValidationError,
+                      validator: getEmailValidationError,
                       onChanged: (value) {
                         _email = value;
                         _formEmailKey.currentState!.validate();
@@ -111,7 +111,7 @@ class _SignUpState extends State<SignUp> {
                       obscureText: true,
                       enableSuggestions: false,
                       autocorrect: false,
-                      validator: passwordValidationError,
+                      validator: getPasswordValidationError,
                       onChanged: (value) {
                         _password = value;
                         _formPasswordKey.currentState!.validate();
@@ -129,8 +129,8 @@ class _SignUpState extends State<SignUp> {
                 child: TextButton(
                   onPressed: () {
                     updateUI();
-                    if (emailValidationError(_email) == null &&
-                        passwordValidationError(_password) == null) {
+                    if (getEmailValidationError(_email) == null &&
+                        getPasswordValidationError(_password) == null) {
                       Navigator.pushNamed(context, '/sign_up_extended');
                     }
                   },
