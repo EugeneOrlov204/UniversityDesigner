@@ -61,6 +61,9 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
             _getPasswordField(),
+            Expanded(
+              child: Container()
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 16, right: 16, top: 120),
               child: SizedBox(
