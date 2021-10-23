@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 
 import 'my_profile.dart';
 
-///TODO: fix design on big screens
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(

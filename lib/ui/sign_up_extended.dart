@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon_project/model/user.dart';
 import 'package:hackathon_project/utils/validator.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SignUpExtended extends StatefulWidget {
   const SignUpExtended({Key? key}) : super(key: key);
@@ -12,10 +16,21 @@ class SignUpExtended extends StatefulWidget {
 
 class _SignUpExtendedState extends State<SignUpExtended> {
   final GlobalKey<FormState> _formUserNameKey = GlobalKey<FormState>();
-  String _userName = "";
+  String dropdownValue = 'Institute One';
+  String assetName = "assets/images/ic_user_mockup.png";
+  UserModel user = UserModel();
+
+  _imgFromGallery() async {
+    XFile? image = await ImagePicker()
+        .pickImage(source: ImageSource.gallery, imageQuality: 50);
+
+    setState(() {
+      assetName = image?.path ?? "assets/images/ic_user_mockup.png";
+    });
+  }
 
   updateUI() {
-    setState(() => _formUserNameKey.currentState!.validate());
+    setState(() => _formUserNameKey.currentState?.validate());
   }
 
   @override
@@ -31,19 +46,37 @@ class _SignUpExtendedState extends State<SignUpExtended> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.1),
+              padding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).size.height * 0.1),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Stack(
-                    alignment: Alignment.center,
-                    children: <Widget>[
-                      SvgPicture.asset('assets/images/picture_background.svg'),
-                      SvgPicture.asset('assets/images/user_mockup.svg'),
-                    ],
+                  Container(
+                    width: 150.0,
+                    height: 150.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: FileImage(
+                            File(assetName),
+                          )),
+                    ),
                   ),
-                  SvgPicture.asset('assets/images/ic_add_image.svg'),
+                  SizedBox(
+                    width: 150,
+                    height: 150,
+                    child: IconButton(
+                      icon: SvgPicture.asset(
+                        'assets/images/ic_add_image.svg',
+                        width: 75,
+                        height: 75,
+                        fit: BoxFit.cover,
+                      ),
+                      onPressed: _imgFromGallery,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -87,8 +120,8 @@ class _SignUpExtendedState extends State<SignUpExtended> {
                       ),
                       validator: geUserNameValidationError,
                       onChanged: (value) {
-                        _userName = value;
-                        _formUserNameKey.currentState!.validate();
+                        user.userName = value;
+                        _formUserNameKey.currentState?.validate();
                       },
                     ),
                   ),
@@ -107,7 +140,40 @@ class _SignUpExtendedState extends State<SignUpExtended> {
                 ),
               ),
             ),
-            const InstituteFieldWidget(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: SizedBox(
+                width: double.infinity,
+                child: DropdownButton<String>(
+                  value: dropdownValue,
+                  icon: const Icon(Icons.account_balance),
+                  iconSize: 24,
+                  elevation: 16,
+                  style: const TextStyle(color: Colors.black45),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.white,
+                  ),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      user.institute = newValue ?? "";
+                      dropdownValue = newValue ?? "";
+                    });
+                  },
+                  items: <String>[
+                    'Institute One',
+                    'Institute Two',
+                    'Institute Three',
+                    'Institute Four'
+                  ].map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
             Expanded(
               child: Container(),
             ),
@@ -150,7 +216,7 @@ class _SignUpExtendedState extends State<SignUpExtended> {
                   child: TextButton(
                     onPressed: () {
                       updateUI();
-                      if (geUserNameValidationError(_userName) == null) {
+                      if (geUserNameValidationError(user.userName) == null) {
                         Navigator.pushNamed(context, '/my_profile');
                       }
                     },
@@ -174,55 +240,6 @@ class _SignUpExtendedState extends State<SignUpExtended> {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-/// This is the stateful widget that the main application instantiates.
-class InstituteFieldWidget extends StatefulWidget {
-  const InstituteFieldWidget({Key? key}) : super(key: key);
-
-  @override
-  State<InstituteFieldWidget> createState() => _InstituteFieldWidgetState();
-}
-
-class _InstituteFieldWidgetState extends State<InstituteFieldWidget> {
-  String dropdownValue = 'Institute One';
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: SizedBox(
-        width: double.infinity,
-        child: DropdownButton<String>(
-          value: dropdownValue,
-          icon: const Icon(Icons.account_balance),
-          iconSize: 24,
-          elevation: 16,
-          style: const TextStyle(color: Colors.black45),
-          underline: Container(
-            height: 2,
-            color: Colors.white,
-          ),
-          onChanged: (String? newValue) {
-            setState(() {
-              dropdownValue = newValue!;
-            });
-          },
-          items: <String>[
-            'Institute One',
-            'Institute Two',
-            'Institute Three',
-            'Institute Four'
-          ].map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
         ),
       ),
     );
