@@ -16,7 +16,7 @@ String? getPasswordValidationError(String? value) {
   return null;
 }
 
-String? geUserNameValidationError(String? value) {
+String? getUserNameValidationError(String? value) {
   if (value == null || value.isEmpty) {
     return 'Please enter your name!';
   } else if (value.length <= 5) {
