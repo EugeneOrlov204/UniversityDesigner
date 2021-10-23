@@ -17,15 +17,24 @@ class SignUpExtended extends StatefulWidget {
 class _SignUpExtendedState extends State<SignUpExtended> {
   final GlobalKey<FormState> _formUserNameKey = GlobalKey<FormState>();
   String dropdownValue = 'Institute One';
-  String assetName = "assets/images/ic_user_mockup.png";
+  String imagePath = "";
   UserModel user = UserModel();
+  bool _loaded = false;
+  var placeholder = const AssetImage("assets/images/ic_user_mockup.png");
 
   _imgFromGallery() async {
     XFile? image = await ImagePicker()
         .pickImage(source: ImageSource.gallery, imageQuality: 50);
 
     setState(() {
-      assetName = image?.path ?? "assets/images/ic_user_mockup.png";
+      if (image == null) {
+        imagePath = "";
+        _loaded = false;
+      } else {
+        imagePath = image.path;
+        _loaded = true;
+        user.imagePath = imagePath;
+      }
     });
   }
 
@@ -58,10 +67,11 @@ class _SignUpExtendedState extends State<SignUpExtended> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: FileImage(
-                            File(assetName),
-                          )),
+                        fit: BoxFit.fill,
+                        image: _loaded
+                            ? FileImage(File(imagePath))
+                            : placeholder as ImageProvider,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -118,7 +128,7 @@ class _SignUpExtendedState extends State<SignUpExtended> {
                         hintStyle:
                             TextStyle(color: Colors.white60, fontSize: 12),
                       ),
-                      validator: geUserNameValidationError,
+                      validator: getUserNameValidationError,
                       onChanged: (value) {
                         user.userName = value;
                         _formUserNameKey.currentState?.validate();
@@ -156,8 +166,8 @@ class _SignUpExtendedState extends State<SignUpExtended> {
                   ),
                   onChanged: (String? newValue) {
                     setState(() {
-                      user.institute = newValue ?? "";
                       dropdownValue = newValue ?? "";
+                      user.institute = dropdownValue;
                     });
                   },
                   items: <String>[
@@ -216,8 +226,11 @@ class _SignUpExtendedState extends State<SignUpExtended> {
                   child: TextButton(
                     onPressed: () {
                       updateUI();
-                      if (geUserNameValidationError(user.userName) == null) {
-                        Navigator.pushNamed(context, '/my_profile');
+                      if (getUserNameValidationError(user.userName) == null) {
+                        Navigator.pushNamed(
+                          context,
+                          '/my_profile',
+                          arguments: user);
                       }
                     },
                     style: TextButton.styleFrom(
