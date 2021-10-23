@@ -80,54 +80,60 @@ class _SignUpExtendedState extends State<SignUpExtended> {
             Expanded(
               child: Container(),
             ),
-            Align(
-              alignment: FractionalOffset.bottomCenter,
-              child: SizedBox(
-                width: double.infinity,
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/sign_up_extended');
-                  },
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    shape: const RoundedRectangleBorder(
-                      side: BorderSide(
-                        color: Colors.white,
-                        width: 1,
-                        style: BorderStyle.solid,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                alignment: FractionalOffset.bottomCenter,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      shape: const RoundedRectangleBorder(
+                        side: BorderSide(
+                          color: Colors.white,
+                          width: 1,
+                          style: BorderStyle.solid,
+                        ),
                       ),
                     ),
-                  ),
-                  child: Text(
-                    "Cancel",
-                    style: GoogleFonts.openSans(
-                        fontSize: 14, color: Colors.white),
+                    child: Text(
+                      "Cancel",
+                      style: GoogleFonts.openSans(
+                          fontSize: 14, color: Colors.white),
+                    ),
                   ),
                 ),
               ),
             ),
-            Align(
-              alignment: FractionalOffset.bottomCenter,
-              child: SizedBox(
-                width: double.infinity,
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/sign_up_extended');
-                  },
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    shape: const RoundedRectangleBorder(
-                      side: BorderSide(
-                        color: Colors.white,
-                        width: 1,
-                        style: BorderStyle.solid,
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
+              child: Align(
+                alignment: FractionalOffset.bottomCenter,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/my_profile');
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      shape: const RoundedRectangleBorder(
+                        side: BorderSide(
+                          color: Colors.white,
+                          width: 1,
+                          style: BorderStyle.solid,
+                        ),
                       ),
                     ),
-                  ),
-                  child: Text(
-                    "REGISTER",
-                    style: GoogleFonts.openSans(
-                        fontSize: 14, color: Colors.white),
+                    child: Text(
+                      "REGISTER",
+                      style: GoogleFonts.openSans(
+                          fontSize: 14, color: Colors.white),
+                    ),
                   ),
                 ),
               ),
