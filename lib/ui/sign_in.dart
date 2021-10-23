@@ -153,7 +153,7 @@ class _SignInState extends State<SignIn> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, top: 120),
+              padding: const EdgeInsets.only(left: 16, right: 16),
               child: SizedBox(
                 width: double.infinity,
                 child: TextButton(
