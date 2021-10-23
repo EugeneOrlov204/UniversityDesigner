@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon_project/utils/validator.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -9,10 +10,20 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  final GlobalKey<FormState> _formEmailKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formPasswordKey = GlobalKey<FormState>();
+  String _email = "";
+  String _password = "";
+
+  updateUI() {
+    setState(() => _formPasswordKey.currentState!.validate());
+    setState(() => _formEmailKey.currentState!.validate());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     body: Container(
+      body: Container(
         height: double.infinity,
         width: double.infinity,
         decoration: const BoxDecoration(
@@ -47,7 +58,30 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
             ),
-            _getEmailField(),
+            Form(
+              key: _formEmailKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
+                      decoration: const InputDecoration(
+                        hintText: 'Enter your email',
+                        hintStyle:
+                            TextStyle(color: Colors.white60, fontSize: 12),
+                      ),
+                      validator: emailValidationError,
+                      onChanged: (value) {
+                        _email = value;
+                        _formEmailKey.currentState!.validate();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(
                   left: 16, top: 24, bottom: 8, right: 24),
@@ -60,17 +94,45 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
             ),
-            _getPasswordField(),
-            Expanded(
-              child: Container()
+            Form(
+              key: _formPasswordKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
+                      decoration: const InputDecoration(
+                        hintText: 'Enter your password',
+                        hintStyle:
+                            TextStyle(color: Colors.white60, fontSize: 12),
+                      ),
+                      obscureText: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
+                      validator: passwordValidationError,
+                      onChanged: (value) {
+                        _password = value;
+                        _formPasswordKey.currentState!.validate();
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
+            Expanded(child: Container()),
             Padding(
               padding: const EdgeInsets.only(left: 16, right: 16, top: 120),
               child: SizedBox(
                 width: double.infinity,
                 child: TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/my_profile');
+                    updateUI();
+                    if (emailValidationError(_email) == null &&
+                        passwordValidationError(_password) == null) {
+                      Navigator.pushNamed(context, '/my_profile');
+                    }
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.transparent,
@@ -96,28 +158,28 @@ class _SignInState extends State<SignIn> {
               alignment: Alignment.center,
               child: SizedBox(
                 width: double.infinity,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "Don't have an account?",
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.openSans(
-                          fontSize: 14, color: Colors.white),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/sign_up');
-                      },
-                      child: Text(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/sign_up');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "Don't have an account?",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.openSans(
+                            fontSize: 14, color: Colors.white),
+                      ),
+                      Text(
                         "Sign up",
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                             fontSize: 14, color: Colors.white),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -126,85 +188,4 @@ class _SignInState extends State<SignIn> {
       ),
     );
   }
-}
-
-Widget _getEmailField() {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  bool emailValid(String email) {
-    return RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(email);
-  }
-
-  String? _validateEmail(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter your email!';
-    } else if (!emailValid(value)) {
-      return 'You entered invalid email!';
-    }
-    return null;
-  }
-
-  return Form(
-    key: _formKey,
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(left: 16.0),
-          child: TextFormField(
-            style: const TextStyle(color: Colors.white),
-            decoration: const InputDecoration(
-              hintText: 'Enter your email',
-              hintStyle: TextStyle(color: Colors.white60, fontSize: 12),
-            ),
-            validator: _validateEmail,
-            onFieldSubmitted: (value) {
-              _formKey.currentState!.validate();
-            },
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-Widget _getPasswordField() {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  String? _validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter your password!';
-    } else if (value.length < 8) {
-      return 'Your password must include a minimum of 8 characters.';
-    }
-    return null;
-  }
-
-  return Form(
-    key: _formKey,
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(left: 16.0),
-          child: TextFormField(
-            style: const TextStyle(color: Colors.white),
-            decoration: const InputDecoration(
-              hintText: 'Enter your password',
-              hintStyle: TextStyle(color: Colors.white60, fontSize: 12),
-            ),
-            obscureText: true,
-            enableSuggestions: false,
-            autocorrect: false,
-            validator: _validatePassword,
-            onFieldSubmitted: (value) {
-              _formKey.currentState!.validate();
-            },
-          ),
-        ),
-      ],
-    ),
-  );
 }
