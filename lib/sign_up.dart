@@ -158,28 +158,28 @@ class _SignUpState extends State<SignUp> {
               alignment: Alignment.center,
               child: SizedBox(
                 width: double.infinity,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "Already have an account?",
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.openSans(
-                          fontSize: 14, color: Colors.white),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "Already have an account?",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.openSans(
+                            fontSize: 14, color: Colors.white),
+                      ),
+                      Text(
                         "Sign in",
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                             fontSize: 14, color: Colors.white),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -187,7 +187,5 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
-
-
   }
 }
