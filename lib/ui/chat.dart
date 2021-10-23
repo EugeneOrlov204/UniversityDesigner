@@ -22,7 +22,7 @@ class _ChatState extends State<Chat> {
         ),
         centerTitle: true,
         bottom: PreferredSize(
-          preferredSize: Size(42, 24),
+          preferredSize: Size(24, 24),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
