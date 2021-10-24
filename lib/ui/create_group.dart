@@ -13,112 +13,124 @@ class _CreateGroupState extends State<CreateGroup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 19, 173, 181),
-            ),
-            child: Column(children: <Widget>[
-              //самый верх
-              Row(
-                children: [
-                  //кнопка "в ангар"
-                  Container(
-                    alignment: Alignment.topLeft,
-                    padding: const EdgeInsets.only(left: 4, right: 4, top: 4),
-                    child: IconButton(
-                        icon: SvgPicture.asset(
-                          'assets/icons/back_arrow.svg',
-                          height: 16,
-                          width: 16,
-                          color: Colors.white,
-                          fit: BoxFit.scaleDown,
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/my_profile');
-                        }
-                    ),
-                  ),
-                  //текст "New Group"
-                  Container(
-                    alignment: Alignment.topCenter,
-                    padding: const EdgeInsets.only(left: 180, right: 0, top: 4),
-                    child: Text(
-                      'New Group',
-                      style: GoogleFonts.openSans(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 24.0,
-                      ),
-                    ),
-                  ),
-                  //кнопка "поиск ...заработной платы"
-                  Container(
-                    alignment: Alignment.topLeft,
-                    padding: const EdgeInsets.only(left: 180, right: 0, top: 4),
-                    child: IconButton(
-                        icon: SvgPicture.asset(
-                          'assets/icons/search.svg',
-                          height: 16,
-                          width: 16,
-                          color: Colors.white,
-                          fit: BoxFit.scaleDown,
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/my_profile');
-                        }
-                    ),
-                  ),
-                ]
-              ),
-              //текст up to ... members
-              Container(
-                alignment: Alignment.topCenter,
-                padding: const EdgeInsets.only(left: 0, right: 0, top: 0),
-                child: Text(
-                  'up to 300 members',
-                  style: GoogleFonts.openSans(
-                    color: Colors.grey[50],
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12.0,
-                  ),
-                ),
-              ),
-              //строка ввода
-              _getChatMembersField(),
-              //кнопка контакта
-              Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16, top: 20),
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 75,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/create_group');
-                    },
-                    style: TextButton.styleFrom(
-                      backgroundColor: Colors.transparent,
-                      shape: const RoundedRectangleBorder(
-                        side: BorderSide(
-                          color: Colors.white,
-                          width: 1,
-                          style: BorderStyle.solid,
-                          
-                        ),
-                      ),
-                    ),
-                    child: Text(
-                      "Test",
-                      style:
-                      GoogleFonts.openSans(fontSize: 14, color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ]),
-
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 19, 173, 181),
         ),
+        child: Column(children: <Widget>[
+          //самый верх
+          Row(children: [
+            //кнопка "в ангар"
+            Container(
+              alignment: Alignment.topLeft,
+              padding: const EdgeInsets.only(left: 4, right: 4, top: 4),
+              child: IconButton(
+                  icon: SvgPicture.asset(
+                    'assets/icons/back_arrow.svg',
+                    height: 16,
+                    width: 16,
+                    color: Colors.white,
+                    fit: BoxFit.scaleDown,
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/my_profile');
+                  }),
+            ),
+            //текст "New Group"
+            Container(
+              alignment: Alignment.topCenter,
+              padding: const EdgeInsets.only(left: 180, right: 0, top: 4),
+              child: Text(
+                'New Group',
+                style: GoogleFonts.openSans(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 24.0,
+                ),
+              ),
+            ),
+
+            //кнопка "поиск ...заработной платы"
+            Container(
+              alignment: Alignment.topLeft,
+              padding: const EdgeInsets.only(left: 180, right: 0, top: 4),
+              child: IconButton(
+                  icon: SvgPicture.asset(
+                    'assets/icons/search.svg',
+                    height: 16,
+                    width: 16,
+                    color: Colors.white,
+                    fit: BoxFit.scaleDown,
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/my_profile');
+                  }),
+            ),
+          ]),
+
+          //текст up to ... members
+          Container(
+            alignment: Alignment.topCenter,
+            padding: const EdgeInsets.only(left: 0, right: 0, top: 0),
+            child: Text(
+              'up to 300 members',
+              style: GoogleFonts.openSans(
+                color: Colors.grey[50],
+                fontWeight: FontWeight.w600,
+                fontSize: 12.0,
+              ),
+            ),
+          ),
+
+          //строка ввода
+          _getChatMembersField(),
+
+          //кнопка контакта
+          Container(
+            decoration: BoxDecoration(
+              border: Border(
+                top: BorderSide(width: 1.0, color: Color(0xFFFFFFFF)),
+                left: BorderSide(width: 1.0, color: Color(0xFFFFFFFF)),
+                right: BorderSide(width: 1.0, color: Color(0xFFFFFFFF)),
+                bottom: BorderSide(width: 1.0, color: Color(0xFFFFFFFF)),
+              ),
+              //color: Color(0xFFBFBFBF),
+            ),
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 0),
+            alignment: Alignment.centerLeft,
+            child: SizedBox(
+              width: 500,
+              height: 75,
+              child: Row(children: [
+                Container(
+                  width: 75,
+                  height: 75,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                GestureDetector(
+                  child: Row(
+                    children: [
+                      Image.asset('assets/images/ha.jpg'),
+                      Text(
+                        "User_name",
+                        style: GoogleFonts.openSans(
+                            fontSize: 14, color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/create_group');
+                  },
+                ),
+              ]),
+            ),
+          )
+        ]),
+      ),
     );
   }
 

@@ -110,7 +110,7 @@ class _SignUpExtendedState extends State<SignUpExtended> {
                 child: Text(
                   "User name",
                   style:
-                      GoogleFonts.openSans(fontSize: 14, color: Colors.white),
+                  GoogleFonts.openSans(fontSize: 14, color: Colors.white),
                 ),
               ),
             ),
@@ -126,7 +126,7 @@ class _SignUpExtendedState extends State<SignUpExtended> {
                       decoration: const InputDecoration(
                         hintText: 'Enter your user name',
                         hintStyle:
-                            TextStyle(color: Colors.white60, fontSize: 12),
+                        TextStyle(color: Colors.white60, fontSize: 12),
                       ),
                       validator: getUserNameValidationError,
                       onChanged: (value) {
@@ -146,7 +146,7 @@ class _SignUpExtendedState extends State<SignUpExtended> {
                 child: Text(
                   "Institute",
                   style:
-                      GoogleFonts.openSans(fontSize: 14, color: Colors.white),
+                  GoogleFonts.openSans(fontSize: 14, color: Colors.white),
                 ),
               ),
             ),
@@ -218,7 +218,7 @@ class _SignUpExtendedState extends State<SignUpExtended> {
             ),
             Padding(
               padding:
-                  const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
+              const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
               child: Align(
                 alignment: FractionalOffset.bottomCenter,
                 child: SizedBox(
@@ -228,9 +228,9 @@ class _SignUpExtendedState extends State<SignUpExtended> {
                       updateUI();
                       if (getUserNameValidationError(user.userName) == null) {
                         Navigator.pushNamed(
-                          context,
-                          '/my_profile',
-                          arguments: user);
+                            context,
+                            '/my_profile',
+                            arguments: user);
                       }
                     },
                     style: TextButton.styleFrom(
