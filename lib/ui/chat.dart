@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Chat extends StatefulWidget {
-  const Chat({Key? key}) : super(key: key);
+  var client;
+
+   Chat({Key? key, required this.client}) : super(key: key);
 
   @override
   State<Chat> createState() => _ChatState();
