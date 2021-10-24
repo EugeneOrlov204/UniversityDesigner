@@ -1,5 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hackathon_project/services/auth.dart';
 
 import 'package:hackathon_project/ui/sign_in.dart';
 import 'package:hackathon_project/ui/sign_up.dart';
@@ -12,6 +14,10 @@ import 'my_profile.dart';
 import 'create_group.dart';
 
 void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   final client = StreamChatClient(
     'b67pax5b2wdq',
     logLevel: Level.INFO,
@@ -27,16 +33,24 @@ void main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   runApp(MaterialApp(
-    // Start the app with the "/" named route. In this case, the app starts
-    // on the FirstScreen widget.
-    initialRoute: '/chat', //todo change home root
+
+    initialRoute: '/',
     routes: {
-      '/': (context) => const SignIn(),
+      '/': (context) =>
+          FutureBuilder(
+              future: AuthMethods().getCurrentUser(),
+              builder: (context, AsyncSnapshot<dynamic> snapshot) {
+                if (snapshot.hasData) {
+                  return MyProfile();
+                } else {
+                  return SignIn();
+                }
+              }),
       '/sign_up': (context) => const SignUp(),
       '/sign_up_extended': (context) => const SignUpExtended(),
       '/my_profile': (context) => const MyProfile(),
       '/create_group': (context) => const CreateGroup(),
-      '/chat': (context) =>  Chat(client: client)
+      '/chat': (context) => Chat(client: client)
     },
     debugShowCheckedModeBanner: false,
   ));

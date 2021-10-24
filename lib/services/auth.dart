@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hackathon_project/ui/my_profile.dart';
 import 'package:hackathon_project/utils/sharedpref_helper.dart';
-import 'package:hackathon_project/views/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'database.dart';
@@ -51,7 +51,7 @@ class AuthMethods {
         .addUserInfoToDB(userDetails.uid, userInfoMap)
         .then((value) {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => Home()));
+          context, MaterialPageRoute(builder: (context) => MyProfile()));
     });
   }
 

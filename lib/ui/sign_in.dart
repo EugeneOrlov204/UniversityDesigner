@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon_project/services/auth.dart';
 import 'package:hackathon_project/utils/validator.dart';
 
 class SignIn extends StatefulWidget {
@@ -122,6 +123,24 @@ class _SignInState extends State<SignIn> {
               ),
             ),
             Expanded(child: Container()),
+            Center(
+              child: GestureDetector(
+                onTap: () {
+                  AuthMethods().signInWithGoogle(context);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(24),
+                    color: Color(0xffDB4437),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Text(
+                    "Sign In with Google",
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 16, right: 16, top: 120),
               child: SizedBox(
