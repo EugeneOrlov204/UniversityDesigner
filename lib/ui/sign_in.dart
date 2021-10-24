@@ -123,24 +123,6 @@ class _SignInState extends State<SignIn> {
               ),
             ),
             Expanded(child: Container()),
-            Center(
-              child: GestureDetector(
-                onTap: () {
-                  AuthMethods().signInWithGoogle(context);
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24),
-                    color: Color(0xffDB4437),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: Text(
-                    "Sign In with Google",
-                    style: TextStyle(fontSize: 16, color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
             Padding(
               padding: const EdgeInsets.only(left: 16, right: 16, top: 120),
               child: SizedBox(
@@ -177,7 +159,7 @@ class _SignInState extends State<SignIn> {
                 width: double.infinity,
                 child: TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/create_group');
+                    AuthMethods().signInWithGoogle(context);
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.transparent,
@@ -190,7 +172,7 @@ class _SignInState extends State<SignIn> {
                     ),
                   ),
                   child: Text(
-                    "Test",
+                    "Sign In with Google",
                     style:
                     GoogleFonts.openSans(fontSize: 14, color: Colors.white),
                   ),
