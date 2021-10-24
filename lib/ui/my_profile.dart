@@ -119,49 +119,82 @@ class _MyProfileState extends State<MyProfile> {
                 ),
               ),
             ),
+            Container(
+              height: 20,
+            ),
             //user_name
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            Align(
+              //padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              alignment: Alignment.topCenter,
               child: SizedBox(
-                width: double.infinity,
-                child: DropdownButton<String>(
-                  value: dropdownValue,
-                  icon: const Icon(Icons.account_balance),
-                  iconSize: 24,
-                  elevation: 16,
-                  style: const TextStyle(color: Colors.black45),
-                  underline: Container(
-                    height: 2,
-                    color: Colors.white,
-                  ),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue = newValue ?? "";
-                      user.institute = dropdownValue;
-                    });
-                  },
-                  items: <String>[
-                    'Institute One',
-                    'Institute Two',
-                    'Institute Three',
-                    'Institute Four'
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
+                //width: double.infinity,
+                child: Text(
+                    "Eugene Tank",
+                style:
+                GoogleFonts.openSans(fontSize: 24, color: Colors.white),
                 ),
               ),
             ),
+            //группа
+            Align(
+              //padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              alignment: Alignment.topCenter,
+              child: SizedBox(
+                //width: double.infinity,
+                child: Text(
+                  "Студент группы КН 3.2.2",
+                  style:
+                  GoogleFonts.openSans(fontSize: 14, color: Colors.grey[50]),
+                ),
+              ),
+            ),
+            Container(
+              height:  20,
+            ),
+            //bio
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              alignment: Alignment.topLeft,
+              child: Row(
+                children: [
+                  Container(
+                    child: SizedBox(
+                      //width: double.infinity,
+                      child: Text(
+                        "Bio:",
+                        style:
+                        GoogleFonts.openSans(fontSize: 14, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 500,
+                    padding: const EdgeInsets.only(left: 20, right: 20, top: 165),
+                    alignment: Alignment.topCenter,
+                    child: SizedBox(
+                      //width: double.infinity,
+                      child: Text(
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n Maecenas in velit massa.\n Praesent sit amet est at ligula condimentum bibendum quis vitae ex.\n Integer et tempor augue, sed lobortis arcu. Duis cursus mi eu sem euismod condimentum.\n Vivamus quis orci sollicitudin, auctor enim eu, molestie felis. Ut tristique justo a mattis tristique.\n Sed lacinia sagittis ante sit amet convallis. Aenean vehicula nunc in tempus mattis.\n In imperdiet dui sit amet semper rhoncus. Aliquam euismod quis lectus eget tempus.\n Vivamus viverra est non aliquet commodo. Sed placerat, justo at dapibus feugiat, odio nibh imperdiet elit, vitae convallis justo nisl aliquet massa. Vivamus consectetur lectus id semper venenatis.\n",
+                        maxLines: 10,
+                        style:
+                        GoogleFonts.openSans(fontSize: 14, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ]
+              ),
+            ),
+
             //нижние кнопки
             Expanded(
               child: Container()
             ),
-            Padding(
+            Container(
               padding: const EdgeInsets.only(left: 16, right: 16),
+              alignment: Alignment.topCenter,
               child: SizedBox(
                 width: double.infinity,
+                height: 50,
                 child: TextButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/chat');
@@ -171,18 +204,53 @@ class _MyProfileState extends State<MyProfile> {
                     shape: const RoundedRectangleBorder(
                       side: BorderSide(
                         color: Colors.white,
-                        width: 1,
+                        width: 2,
                         style: BorderStyle.solid,
                       ),
                     ),
                   ),
                   child: Text(
-                    "Test Chat",
+                    "Edit profile",
                     style:
                     GoogleFonts.openSans(fontSize: 14, color: Colors.white),
                   ),
                 ),
               ),
+            ),
+            Container(
+              height: 20,
+            ),
+            //кнопка View my contacts
+            Container(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              alignment: Alignment.topCenter,
+              child: SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/chat');
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.deepOrange,
+                    /*shape: const RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: Colors.white,
+                        width: 1,
+                        style: BorderStyle.solid,
+                      ),
+                    ),*/
+                  ),
+                  child: Text(
+                    "View my contacts",
+                    style:
+                    GoogleFonts.openSans(fontSize: 16, color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              height: 20,
             ),
           ],
         ),
