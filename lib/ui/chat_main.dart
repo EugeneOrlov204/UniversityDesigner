@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-
-
 class Chat extends StatelessWidget {
   const Chat({
     Key? key,
@@ -15,6 +13,7 @@ class Chat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       builder: (context, child) => StreamChat(
         client: client,
         child: child,
@@ -32,7 +31,6 @@ class ChannelListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: ChannelsBloc(
         child: ChannelListView(
           filter: Filter.in_(
@@ -53,37 +51,319 @@ class ChannelListPage extends StatelessWidget {
       (message) => !message.isDeleted,
     );
 
-    final subtitle = lastMessage == null ? 'nothing yet' : lastMessage.text!;
-
-    return ListTile(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => StreamChannel(
-              channel: channel,
-              child: const ChannelPage(),
+    return Column(
+      children: [
+        ListTile(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => StreamChannel(
+                  channel: channel,
+                  child: const ChannelPage(),
+                ),
+              ),
+            );
+          },
+          leading: ChannelAvatar(
+            channel: channel,
+          ),
+          title: Text(
+            "Общая группа",
+            style: GoogleFonts.openSans(
+              fontSize: 14,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
             ),
           ),
-        );
-      },
-      leading: ChannelAvatar(
-        channel: channel,
-      ),
-      title: ChannelName(
-        textStyle: GoogleFonts.openSans(
-          fontSize: 14,
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
+          subtitle: Text("Количество участников: 50"),
+          trailing: channel.state!.unreadCount > 0
+              ? CircleAvatar(
+            radius: 10,
+            child: Text(channel.state!.unreadCount.toString()),
+          )
+              : const SizedBox(),
         ),
-      ),
-      subtitle: Text(subtitle),
-      trailing: channel.state!.unreadCount > 0
-          ? CircleAvatar(
-              radius: 10,
-              child: Text(channel.state!.unreadCount.toString()),
-            )
-          : const SizedBox(),
+        ListTile(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => StreamChannel(
+                  channel: channel,
+                  child: const ChannelPage(),
+                ),
+              ),
+            );
+          },
+          leading: ChannelAvatar(
+            channel: channel,
+          ),
+          title: Text(
+            "КН 3.02.01",
+            style: GoogleFonts.openSans(
+              fontSize: 14,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          subtitle: Text("Количество участников: 12"),
+          trailing: channel.state!.unreadCount > 0
+              ? CircleAvatar(
+            radius: 10,
+            child: Text(channel.state!.unreadCount.toString()),
+          )
+              : const SizedBox(),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => StreamChannel(
+                  channel: channel,
+                  child: const ChannelPage(),
+                ),
+              ),
+            );
+          },
+          leading: ChannelAvatar(
+            channel: channel,
+          ),
+          title: Text(
+            "Пикник",
+            style: GoogleFonts.openSans(
+              fontSize: 14,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          subtitle: Text("Количество участников: 35"),
+          trailing: channel.state!.unreadCount > 0
+              ? CircleAvatar(
+            radius: 10,
+            child: Text(300.toString()),
+          )
+              : const SizedBox(),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => StreamChannel(
+                  channel: channel,
+                  child: const ChannelPage(),
+                ),
+              ),
+            );
+          },
+          leading: ChannelAvatar(
+            channel: channel,
+          ),
+          title: Text(
+            "Методы оптимизации",
+            style: GoogleFonts.openSans(
+              fontSize: 14,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          subtitle: Text("Количество участников: 65"),
+          trailing: channel.state!.unreadCount > 0
+              ? CircleAvatar(
+            radius: 10,
+            child: Text(channel.state!.unreadCount.toString()),
+          )
+              : const SizedBox(),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => StreamChannel(
+                  channel: channel,
+                  child: const ChannelPage(),
+                ),
+              ),
+            );
+          },
+          leading: ChannelAvatar(
+            channel: channel,
+          ),
+          title: Text(
+            "Танчики",
+            style: GoogleFonts.openSans(
+              fontSize: 14,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          subtitle: Text("Количество участников: 15"),
+          trailing: channel.state!.unreadCount > 0
+              ? CircleAvatar(
+            radius: 10,
+            child: Text(channel.state!.unreadCount.toString()),
+          )
+              : const SizedBox(),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => StreamChannel(
+                  channel: channel,
+                  child: const ChannelPage(),
+                ),
+              ),
+            );
+          },
+          leading: ChannelAvatar(
+            channel: channel,
+          ),
+          title: Text(
+            "Деканат",
+            style: GoogleFonts.openSans(
+              fontSize: 14,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          subtitle: Text("Количество участников: 55"),
+          trailing: channel.state!.unreadCount > 0
+              ? CircleAvatar(
+            radius: 10,
+            child: Text(channel.state!.unreadCount.toString()),
+          )
+              : const SizedBox(),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => StreamChannel(
+                  channel: channel,
+                  child: const ChannelPage(),
+                ),
+              ),
+            );
+          },
+          leading: ChannelAvatar(
+            channel: channel,
+          ),
+          title: Text(
+            "Ролевые игры по Героям",
+            style: GoogleFonts.openSans(
+              fontSize: 14,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          subtitle: Text("Количество участников: 50"),
+          trailing: channel.state!.unreadCount > 0
+              ? CircleAvatar(
+            radius: 10,
+            child: Text(channel.state!.unreadCount.toString()),
+          )
+              : const SizedBox(),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => StreamChannel(
+                  channel: channel,
+                  child: const ChannelPage(),
+                ),
+              ),
+            );
+          },
+          leading: ChannelAvatar(
+            channel: channel,
+          ),
+          title: Text(
+            "Велоезда",
+            style: GoogleFonts.openSans(
+              fontSize: 14,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          subtitle: Text("Количество участников: 76"),
+          trailing: channel.state!.unreadCount > 0
+              ? CircleAvatar(
+            radius: 10,
+            child: Text(channel.state!.unreadCount.toString()),
+          )
+              : const SizedBox(),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => StreamChannel(
+                  channel: channel,
+                  child: const ChannelPage(),
+                ),
+              ),
+            );
+          },
+          leading: ChannelAvatar(
+            channel: channel,
+          ),
+          title: Text(
+            "Группа КН 3.02.01",
+            style: GoogleFonts.openSans(
+              fontSize: 14,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          subtitle: Text("Количество участников: 50"),
+          trailing: channel.state!.unreadCount > 0
+              ? CircleAvatar(
+            radius: 10,
+            child: Text(channel.state!.unreadCount.toString()),
+          )
+              : const SizedBox(),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => StreamChannel(
+                  channel: channel,
+                  child: const ChannelPage(),
+                ),
+              ),
+            );
+          },
+          leading: ChannelAvatar(
+            channel: channel,
+          ),
+          title: Text(
+            "Домашка",
+            style: GoogleFonts.openSans(
+              fontSize: 14,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          subtitle: Text("Количество участников: 25"),
+          trailing: channel.state!.unreadCount > 0
+              ? CircleAvatar(
+            radius: 10,
+            child: Text(channel.state!.unreadCount.toString()),
+          )
+              : const SizedBox(),
+        ),
+      ],
     );
   }
 }
@@ -96,7 +376,51 @@ class ChannelPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const ChannelHeader(),
+      appBar: AppBar(
+        toolbarHeight: 100,
+        backgroundColor: const Color.fromARGB(255, 19, 173, 181),
+        foregroundColor: Colors.white,
+        title: Text(
+          'Группа КН 3.02.01',
+          style: GoogleFonts.openSans(fontSize: 24, color: Colors.white),
+        ),
+        centerTitle: true,
+        bottom: PreferredSize(
+          preferredSize: Size(24, 24),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Text(
+                  "Новости",
+                  style:
+                      GoogleFonts.openSans(fontSize: 14, color: Colors.white),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Text(
+                  "Ссылки на пары",
+                  style:
+                      GoogleFonts.openSans(fontSize: 14, color: Colors.white),
+                ),
+              ),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.menu,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              // do something
+            },
+          ),
+        ],
+      ),
       body: Column(
         children: <Widget>[
           Expanded(

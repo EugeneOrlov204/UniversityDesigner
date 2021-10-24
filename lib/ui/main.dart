@@ -14,7 +14,6 @@ import 'my_profile.dart';
 import 'create_group.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -33,19 +32,17 @@ void main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   runApp(MaterialApp(
-
     initialRoute: '/',
     routes: {
-      '/': (context) =>
-          FutureBuilder(
-              future: AuthMethods().getCurrentUser(),
-              builder: (context, AsyncSnapshot<dynamic> snapshot) {
-                if (snapshot.hasData) {
-                  return MyProfile();
-                } else {
-                  return SignIn();
-                }
-              }),
+      '/': (context) => FutureBuilder(
+          future: AuthMethods().getCurrentUser(),
+          builder: (context, AsyncSnapshot<dynamic> snapshot) {
+            if (snapshot.hasData) {
+              return MyProfile();
+            } else {
+              return SignIn();
+            }
+          }),
       '/sign_up': (context) => const SignUp(),
       '/sign_up_extended': (context) => const SignUpExtended(),
       '/my_profile': (context) => const MyProfile(),

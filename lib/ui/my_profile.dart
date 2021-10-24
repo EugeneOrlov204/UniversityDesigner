@@ -258,9 +258,3 @@ class _MyProfileState extends State<MyProfile> {
     );
   }
 }
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
