@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "779658393066",
+    "project_id": "universitydesigner",
+    "storage_bucket": "universitydesigner.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779658393066:android:13828a8947ff20b736ee93",
+        "android_client_info": {
+          "package_name": "com.university_designer.intelligent_distribution.hackathon_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779658393066-h5hvcas8jpt9nleoinidftpjc6fl5rca.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQpPIXbgtTWrZOsMSTFykG9XHgWwNH5FQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779658393066-h5hvcas8jpt9nleoinidftpjc6fl5rca.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
